@@ -32,8 +32,6 @@
 				rawData = data[0].list,
 				templateData = this.processData( rawData ),
 				template = _.template( $( "script.template" ).html() );
-			console.log("ext-data");
-			console.log(data);
 
 			$extended.empty();
 			$extended.append( template( templateData ) );
@@ -112,6 +110,7 @@
 
 	var $form = $( "#location-form" ),
 		$input = $( "#location-val" ).focus(),
+		$output = $(".output").hide(),
 		formatTime = new FormatTime(),
 		getLocation = new GetLocation();
 
@@ -122,6 +121,7 @@
 	if ( navigator.geolocation ) {
 		navigator.geolocation.getCurrentPosition(function(position){
 			weatherApp.runWeatherApp( position );
+			$output.show();
 		});
 	} else { };
 
@@ -135,6 +135,9 @@
 		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			$input.focus();
 		}
+
+		$output.show();
+
 		return false;
 	});
 
