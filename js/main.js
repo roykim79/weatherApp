@@ -95,8 +95,6 @@
 				zip = { zip: location };
 
 			if ( typeof location == 'object' ) {
-				alert("location is object");
-				console.log(location);
 				var coords = {
 					lat: location.coords.latitude,
 					lon: location.coords.longitude
