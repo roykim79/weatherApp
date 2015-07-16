@@ -120,12 +120,12 @@
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		$input.blur();
 	}
-	// location based search on page load
-	// if ( navigator.geolocation ) {
-	// 	navigator.geolocation.getCurrentPosition(function(position){
-	// 		weatherApp.runWeatherApp( position );
-	// 	});
-	// } else { };
+	location based search on page load
+	if ( navigator.geolocation ) {
+		navigator.geolocation.getCurrentPosition(function(position){
+			weatherApp.runWeatherApp( position );
+		});
+	} else { };
 
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );
