@@ -118,6 +118,7 @@
 
 	var $form = $( "#location-form" ),
 		$input = $( "#location-val" ),
+		$output = $( ".output" ).hide(),
 		formatTime = new FormatTime(),
 		getLocation = new GetLocation();
 
@@ -129,6 +130,7 @@
 	if ( navigator.geolocation ) {
 		navigator.geolocation.getCurrentPosition(function(position){
 			weatherApp.runWeatherApp( position );
+			$output.show()
 		});
 	} else {}
 	// weatherApp.runWeatherApp(  );
@@ -136,6 +138,7 @@
 		var location = $.trim( $input.val() );
 
 		weatherApp.runWeatherApp(location);
+		$output.show();
 
 		$input.val("").blur(); // gets rid of suggestion box
 
