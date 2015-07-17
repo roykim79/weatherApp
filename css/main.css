@@ -94,11 +94,17 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
 body {
     background: #69d;
-    /*background: #eee;*/
-    height: 100vh;
+    /*background: url("http://dsx.weather.com/util/image/mw/wxbkb_default_clear_day_2_mezz_dark.jpg?v=wp&w=1600&h=700");*/
+    background-size: cover;
+    background-position: center;
 }
+
+/*
+ * FORM INPUT STYLES
+ */
 
 .input {
     background: #777;
@@ -114,31 +120,59 @@ body {
 #location-val {
     border: 2px solid #aaa;
     box-sizing: border-box;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 300;
     padding: 3px;
     width: 100%;
 }
 
-.city-name {
-    color: #fff;
-    font-size: 1.5em;
-    font-weight: 300;
+/*
+ * CURRENT DATA STYLES
+ */
+
+.current {
     text-align: center;
 }
 
+.current h1 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.city-name {
+    color: #fff;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.current-time {
+    color: #92BFEE;
+    display: inline-block;
+    font-size: .4em;
+    font-weight: 300;
+}
+sup {
+    font-size: .65em;
+}
 .current-temp {
     color: #333;
     font-size: 2.6em;
     font-weight: 200;
-    text-align: center;
 }
 
-body {
-    background: url("http://dsx.weather.com/util/image/mw/wxbkb_default_clear_day_2_mezz_dark.jpg?v=wp&w=1600&h=700");
-    background-size: cover;
-    background-position: center;
+.current .icon {
+    display: inline-block;
+    width: 100px;
 }
+
+.current .range {
+    color: #ccc;
+}
+
+/*
+ * EXTENDED DATA STYLES
+ */
 
 .extended table {
     width: 100%;
@@ -153,6 +187,8 @@ body {
     color: #fff;
     background: #000;
     background: rgba(0,0,0,.6);
+    font-size: .8em;
+    font-weight: 300;
 }
 
 .extended td {
@@ -162,8 +198,9 @@ body {
 }
 
 .extended tr {
-    /*border: 1px solid #ff0;*/
+
 }
+
 .day {
     font-weight: 600;
     text-align: left;
@@ -176,13 +213,28 @@ body {
     font-weight: 200;
 }
 
+.condition {
+    text-align: center;
+    width: 50px;
+}
+
+.icon {
+    display: inline-block;
+}
+
+.extended .description {
+    text-align: left;
+    text-transform: capitalize;
+}
 .temp {
     text-align: center;
+    width: 60px;
 }
 
 #extended-data .high {
     font-size: 1.3em;
 }
+
 #extended-data .low {
     color: #555;
     font-size: 1em; 
@@ -213,7 +265,13 @@ body {
 .hidden {
     display: none !important;
 }
+/*
+ * Center text
+ */
 
+.center {
+    text-align: center;
+}
 /*
  * Hide only visually, but have it available for screen readers:
  * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
