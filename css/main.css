@@ -145,6 +145,12 @@ body {
     font-size: 1em;
     font-weight: 300;
 }
+.current-time {
+    color: #92BFEE;
+    display: inline-block;
+    font-size: .4em;
+    font-weight: 300;
+}
 
 .current-time {
     color: #92BFEE;
@@ -224,8 +230,8 @@ sup {
 
 .extended .description {
     text-align: left;
-    text-transform: capitalize;
 }
+
 .temp {
     text-align: center;
     width: 60px;
