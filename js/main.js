@@ -23,21 +23,21 @@
 				now = new Date(),
 				curTime = now.toLocaleTimeString();
 
-			$city.html( data.name );
-			// $city.html( data[0].name );	//*****+ PRELOADED API CALL ON  *****+
-			$curCond.attr( 'src', this.getIconURL( data.weather[0].icon ) );
+			// $city.html( data.name );
+			$city.html( data[0].name );	//*****+ PRELOADED API CALL ON  *****+
+			$curCond.attr( 'src', this.getIconURL( data[0].weather[0].icon ) );
 			$curTime.html( formatTime.getTimeOfDay( curTime) );
-			$curTemp.html( Math.round( data.main.temp ) + "<sup><small>&deg;F</small></sup>" );	
-			$curDesc.text( data.weather[0].main );	
-			$curHigh.html( Math.round( data.main.temp_max ) + "&deg;" );	
-			$curLow.html( Math.round( data.main.temp_min ) + "&deg;" );	
-			// $curTemp.html( Math.round( data[0].main.temp ) + "&deg;" );	//*****+ PRELOADED API CALL ON  *****+
+			// $curTemp.html( Math.round( data.main.temp ) + "<sup><small>&deg;F</small></sup>" );	
+			$curDesc.text( data[0].weather[0].main );	
+			$curHigh.html( Math.round( data[0].main.temp_max ) + "&deg;" );	
+			$curLow.html( Math.round( data[0].main.temp_min ) + "&deg;" );	
+			$curTemp.html( Math.round( data[0].main.temp ) + "<sup><small>&deg;F</small></sup>" );	//*****+ PRELOADED API CALL ON  *****+
 		},
 
 		displayExtended: function(data){
 			var $extended = $( "#extended-data" ),
-				rawData = data.list,
-				// rawData = data[0].list,	//*****+ PRELOADED API CALL ON  *****+
+				// rawData = data.list,
+				rawData = data[0].list,	//*****+ PRELOADED API CALL ON  *****+
 				templateData = this.processData( rawData ),
 				template = _.template( $( "script.template" ).html() );
 
@@ -49,16 +49,16 @@
 			var URL = "http://api.openweathermap.org/data/2.5/weather",
 				data = this.queryData;
 
-			return this.myData.current;
-			// return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
+			// return this.myData.current;
+			return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
 		},
 
 		getExtended: function(){
 			var URL = "http://api.openweathermap.org/data/2.5/forecast/daily",
 				data = $.extend( this.queryData, { cnt: 10 } );
 
-			return this.myData.extended;
-			// return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
+			// return this.myData.extended;
+			return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
 		},
 
 		getIconURL: function(code){
@@ -126,12 +126,12 @@
 	}
 	// location based search on page load
 
-	// if ( navigator.geolocation ) {
-	// 	navigator.geolocation.getCurrentPosition(function(position){
-	// 		weatherApp.runWeatherApp( position );
-	// 	});
-	// } else {}
-	weatherApp.runWeatherApp(  );
+	if ( navigator.geolocation ) {
+		navigator.geolocation.getCurrentPosition(function(position){
+			weatherApp.runWeatherApp( position );
+		});
+	} else {}
+	// weatherApp.runWeatherApp(  );
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );
 
