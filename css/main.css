@@ -142,7 +142,7 @@ body {
 .city-name {
     color: #fff;
     display: inline-block;
-    font-size: 1em;
+    font-size: .65em;
     font-weight: 300;
 }
 .current-time {
