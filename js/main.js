@@ -14,32 +14,22 @@
 
 		displayCurrent: function(data){
 			var $city = $( ".city-name" ).eq(0),
-				$curCond = $( ".current .icon" ).eq(0),
 				$curTime = $( ".current-time" ).eq(0),
 				$curTemp = $( ".current-temp" ).eq(0),
-				$curDesc = $( ".current .description" ).eq(0),
-				$curHigh = $( ".current .high" ).eq(0),
-				$curLow = $( ".current .low" ).eq(0),
 				now = new Date(),
 				curTime = now.toLocaleTimeString();
 
-			$city.html( data.name );
-			// $city.html( data[0].name );	//*****+ PRELOADED API CALL ON  *****+
-			$curCond.attr( 'src', this.getIconURL( data.weather[0].icon ) );
+			// $city.html( data.name );
+			$city.html( data[0].name );
 			$curTime.html( formatTime.getTimeOfDay( curTime) );
-			$curTemp.html( Math.round( data.main.temp ) + "<sup><small>&deg;F</small></sup>" );	
-			$curDesc.text( data.weather[0].main );	
-			$curHigh.html( Math.round( data.main.temp_max ) + "&deg;" );	
-			$curLow.html( Math.round( data.main.temp_min ) + "&deg;" );	
-			// $curTemp.html( Math.round( data[0].main.temp ) + "&deg;" );	//*****+ PRELOADED API CALL ON  *****+
-
+			// $curTemp.html( Math.round( data.main.temp ) + "&deg;" );
+			$curTemp.html( Math.round( data[0].main.temp ) + "&deg;" );
 		},
 
 		displayExtended: function(data){
 			var $extended = $( "#extended-data" ),
-				rawData = data.list,
-				// rawData = data[0].list,	//*****+ PRELOADED API CALL ON  *****+
-				rawData = data.list,
+				// rawData = data.list,
+				rawData = data[0].list,
 				templateData = this.processData( rawData ),
 				template = _.template( $( "script.template" ).html() );
 
@@ -51,21 +41,20 @@
 			var URL = "http://api.openweathermap.org/data/2.5/weather",
 				data = this.queryData;
 
-			// return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
-			return this.myData.current;
+			// return this.myData.current;
+			return $.getJSON(URL, data);
 		},
 
 		getExtended: function(){
 			var URL = "http://api.openweathermap.org/data/2.5/forecast/daily",
 				data = $.extend( this.queryData, { cnt: 10 } );
 
-			return this.myData.extended;
-			// return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
+			// return this.myData.extended;
+			return $.getJSON(URL, data);
 		},
 
 		getIconURL: function(code){
 			return "http://openweathermap.org/img/w/" + code +".png"
-			// return this.myData.extended;
 		},
 
 		processData: function(data){
@@ -120,21 +109,6 @@
 	};
 
 	var $form = $( "#location-form" ),
-		$input = $( "#location-val" ),
-		formatTime = new FormatTime(),
-		getLocation = new GetLocation();
-
-	if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		$input.focus();
-	}
-	// location based search on page load
-
-	// if ( navigator.geolocation ) {
-	// 	navigator.geolocation.getCurrentPosition(function(position){
-	// 		weatherApp.runWeatherApp( position );
-	// 	});
-	// } else {}
-	weatherApp.runWeatherApp(  );
 		$input = $( "#location-val" ).focus(),
 		$output = $(".output").hide(),
 		formatTime = new FormatTime(),
@@ -143,13 +117,20 @@
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		$input.blur();
 	}
+	// location based search on page load
+	if ( navigator.geolocation ) {
+		navigator.geolocation.getCurrentPosition(function(position){
+			weatherApp.runWeatherApp( position );
+			$output.show();
+		});
+	} else { };
 
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );
 
 		weatherApp.runWeatherApp(location);
 
-		$input.val("").blur(); // gets rid of suggestion box
+		// $input.val("").blur(); // gets rid of suggestion box
 
 		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			$input.focus();
@@ -157,9 +138,6 @@
 
 		$output.show();
 
-		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-			$input.focus();
-		}
 		return false;
 	});
 
