@@ -34,15 +34,13 @@
 
 		displayExtended: function(data){
 			var $extended = $( "#extended-data" ),
-				$today = $extended.find( $("tr") ).find( $(".day") ),
+				// $today = $extended.find( $("tr") ).find( $(".day") ),
 				rawData = data[0].list,
 				templateData = this.processData( rawData ),
 				template = _.template( $( "script.template" ).html() );
 
 			$extended.empty();
 			$extended.append( template( templateData ) );
-			$today.html = "Today";
-			console.log($today);
 		},
 
 		getCurrent: function(){
@@ -133,9 +131,7 @@
 
 	if ( navigator.geolocation ) {
 		navigator.geolocation.getCurrentPosition(function(position){
-			$loading.show();
 			weatherApp.runWeatherApp( position, $loading, $output );
-			// $output.show();
 		});
 	} else {}
 
@@ -143,7 +139,6 @@
 		var location = $.trim( $input.val() );
 
 		weatherApp.runWeatherApp(location, $loading, $output);
-		// $output.show();
 
 		$input.val("").blur();
 

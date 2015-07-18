@@ -134,7 +134,6 @@ body {
 }
 
 .spinner {
-    display: none;
     font-size: 100px;
     margin-top: 1em;
     text-align: center;
