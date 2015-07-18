@@ -34,12 +34,15 @@
 
 		displayExtended: function(data){
 			var $extended = $( "#extended-data" ),
+				$today = $extended.find( $("tr") ).find( $(".day") ),
 				rawData = data[0].list,
 				templateData = this.processData( rawData ),
 				template = _.template( $( "script.template" ).html() );
 
 			$extended.empty();
 			$extended.append( template( templateData ) );
+			$today.html = "Today";
+			console.log($today);
 		},
 
 		getCurrent: function(){
@@ -75,6 +78,8 @@
 					description: this.weather[0].main
 				});
 			});
+
+			newObj.listItems[0].dayOfWeek = "Today";
 
 			return newObj;
 		},
@@ -126,13 +131,13 @@
 	}
 	// location based search on page load
 
-	// if ( navigator.geolocation ) {
-	// 	navigator.geolocation.getCurrentPosition(function(position){
-	// 		$loading.show();
-	// 		weatherApp.runWeatherApp( position, $loading, $output );
-	// 		// $output.show();
-	// 	});
-	// } else {}
+	if ( navigator.geolocation ) {
+		navigator.geolocation.getCurrentPosition(function(position){
+			$loading.show();
+			weatherApp.runWeatherApp( position, $loading, $output );
+			// $output.show();
+		});
+	} else {}
 
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );
