@@ -23,11 +23,9 @@
 				now = new Date(),
 				curTime = now.toLocaleTimeString();
 
-			// $city.html( data.name );
-			$city.html( data[0].name );	//*****+ PRELOADED API CALL ON  *****+
+			$city.html( data[0].name );
 			$curCond.attr( 'src', this.getIconURL( data[0].weather[0].icon ) );
 			$curTime.html( formatTime.getTimeOfDay( curTime) );
-			// $curTemp.html( Math.round( data.main.temp ) + "<sup><small>&deg;F</small></sup>" );	
 			$curDesc.text( data[0].weather[0].main );	
 			$curHigh.html( Math.round( data[0].main.temp_max ) + "&deg;" );	
 			$curLow.html( Math.round( data[0].main.temp_min ) + "&deg;" );	
@@ -36,8 +34,7 @@
 
 		displayExtended: function(data){
 			var $extended = $( "#extended-data" ),
-				// rawData = data.list,
-				rawData = data[0].list,	//*****+ PRELOADED API CALL ON  *****+
+				rawData = data[0].list,
 				templateData = this.processData( rawData ),
 				template = _.template( $( "script.template" ).html() );
 
@@ -49,16 +46,14 @@
 			var URL = "http://api.openweathermap.org/data/2.5/weather",
 				data = this.queryData;
 
-			// return this.myData.current;
-			return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
+			return $.getJSON(URL, data);
 		},
 
 		getExtended: function(){
 			var URL = "http://api.openweathermap.org/data/2.5/forecast/daily",
 				data = $.extend( this.queryData, { cnt: 10 } );
 
-			// return this.myData.extended;
-			return $.getJSON(URL, data);	//*****+ PRELOADED API CALL ON  *****+
+			return $.getJSON(URL, data);
 		},
 
 		getIconURL: function(code){
@@ -84,7 +79,8 @@
 			return newObj;
 		},
 
-		runWeatherApp: function(location){
+		runWeatherApp: function(location, loading, output){
+			loading.show();
 			this.setQueryData(location);
 			$.when(
 				this.getCurrent(),
@@ -92,6 +88,8 @@
 			).done( function(curData, extData){
 				weatherApp.displayCurrent( curData );
 				weatherApp.displayExtended( extData );
+				loading.hide();
+				output.show();
 			});
 		},
 
@@ -118,7 +116,8 @@
 
 	var $form = $( "#location-form" ),
 		$input = $( "#location-val" ),
-		$output = $( ".output" ).hide(),
+		$output = $( ".output" ),
+		$loading = $( ".spinner" ),
 		formatTime = new FormatTime(),
 		getLocation = new GetLocation();
 
@@ -129,18 +128,19 @@
 
 	if ( navigator.geolocation ) {
 		navigator.geolocation.getCurrentPosition(function(position){
-			weatherApp.runWeatherApp( position );
-			$output.show()
+			$loading.show();
+			weatherApp.runWeatherApp( position, $loading, $output );
+			// $output.show();
 		});
 	} else {}
-	// weatherApp.runWeatherApp(  );
+
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );
 
-		weatherApp.runWeatherApp(location);
-		$output.show();
+		weatherApp.runWeatherApp(location, $loading, $output);
+		// $output.show();
 
-		$input.val("").blur(); // gets rid of suggestion box
+		$input.val("").blur();
 
 		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			$input.focus();

@@ -9,7 +9,9 @@
         <link rel="appletouch icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/grid.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <!-- <link rel="stylesheet" href="css/night.css"> -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -17,15 +19,21 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- INPUT -->
+        <!-- INPUT start-->
         <div class="container input">
             <form id="location-form">
                 <input id="location-val" type="text" placeholder="Enter city or zip...">
             </form>
         </div>
+        <!-- INPUT end-->
 
-        <!-- OUTPUT -->
+        <!-- OUTPUT start -->
         <div class="container output">
+            <!-- spinning loading icon -->
+            <div class="spinner">
+                <i class="fa fa-spinner"></i>
+            </div>
+            <!-- current info -->
             <div class="current">
                 <h1 class="center">
                     <span class="city-name">Chicago </span>
@@ -33,12 +41,13 @@
                 </h1>
                 <img class="icon" id="" src="http://openweathermap.org/img/w/10d.png">
                 <div class="current-temp">80&deg;</div>
-                <div class="description"></div>
+                <div class="description">Cloudy</div>
                 <div class="range">
-                    <span class="high"></span>/
-                    <span class="low"></span>
+                    <span class="high">78</span> /
+                    <span class="low">89</span>
                 </div>
             </div>
+            <!-- extended info -->
             <div class="extended">
                 <table>
                     <thead>
@@ -79,7 +88,7 @@
                 </table>
             </div>    
         </div>
-
+        <!-- OUTPUT end -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
