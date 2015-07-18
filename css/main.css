@@ -300,17 +300,17 @@ sup {
 
 @-webkit-keyframes spinner {
     0% { 
-        -webkit-atransform: rotateZ(0deg);
+        -webkit-transform: rotateZ(0deg);
         opacity: 1;
         -webkit-animation-timing-function: ease-in;
     }
     50% {
-        -webkit-atransform: rotateZ(360deg) scale(1.5);
+        -webkit-transform: rotateZ(360deg) ;
         opacity: .3;
         -webkit-animation-timing-function: ease-out;
     }
     100% {
-        -webkit-atransform: rotateZ(720deg) scale(1);
+        -webkit-transform: rotateZ(720deg) ;
         opacity: 1;
         -webkit-animation-timing-function: ease-in;
     }
