@@ -126,13 +126,13 @@
 	}
 	// location based search on page load
 
-	if ( navigator.geolocation ) {
-		navigator.geolocation.getCurrentPosition(function(position){
-			$loading.show();
-			weatherApp.runWeatherApp( position, $loading, $output );
-			// $output.show();
-		});
-	} else {}
+	// if ( navigator.geolocation ) {
+	// 	navigator.geolocation.getCurrentPosition(function(position){
+	// 		$loading.show();
+	// 		weatherApp.runWeatherApp( position, $loading, $output );
+	// 		// $output.show();
+	// 	});
+	// } else {}
 
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );

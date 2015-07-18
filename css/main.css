@@ -97,7 +97,6 @@ textarea {
 
 body {
     background: #69d;
-    /*background: url("http://dsx.weather.com/util/image/mw/wxbkb_default_clear_day_2_mezz_dark.jpg?v=wp&w=1600&h=700");*/
     background-size: cover;
     background-position: center;
 }
@@ -135,7 +134,7 @@ body {
 }
 
 .spinner {
-    display: none;
+    /*display: none;*/
     font-size: 100px;
     margin-top: 1em;
     text-align: center;
