@@ -124,23 +124,36 @@ body {
     padding: 3px;
     width: 100%;
 }
-
+.loading {
+    display: block;
+    /*position: absolute;*/
+    width: 100%;
+}
 /*
  * CURRENT DATA STYLES
  */
-
+.loading {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin: 1em auto;
+    opacity: .7;
+    /*position: absolute;*/
+}
 .output {
     display: none;
 }
-
 .spinner {
-    font-size: 100px;
-    margin-top: 1em;
+    position: relative;
     text-align: center;
 }
 .fa-spinner {
-
+    color: #efefef;
+    font-size: 100px;
+    opacity: .4;
+    text-align: center;
 }
+
 /*
  * CURRENT DATA STYLES
  */
@@ -268,7 +281,8 @@ sup {
    Animations
    ========================================================================== */
 
-.fa.fa-spinner {
+.fa,
+.fa-spinner {
     display: inline-block;
     -webkit-animation-duration: 2s;
             animation-duration: 2s;
@@ -285,14 +299,14 @@ sup {
         animation-timing-function: ease-in;
     }
     50% {
-        transform: rotateZ(360deg) scale(1.5);
+        transform: rotateZ(360deg) scale(1.3);
         opacity: .3;
         animation-timing-function: ease-out;
     }
     100% {
         transform: rotateZ(720deg) scale(1);
         opacity: 1;
-        animation-timing-function: ease-in;
+        animation-timing-function: ease-out;
     }
 }
 
@@ -300,18 +314,18 @@ sup {
 @-webkit-keyframes spinner {
     0% { 
         -webkit-transform: rotateZ(0deg);
-        opacity: 1;
-        -webkit-animation-timing-function: ease-in;
+        opacity: .8;
+        -webkit-animation-timing-function: ease-in-out;
     }
     50% {
-        -webkit-transform: rotateZ(360deg) ;
+        -webkit-transform: rotateZ(360deg) scale(1.5) ;
         opacity: .3;
-        -webkit-animation-timing-function: ease-out;
+        -webkit-animation-timing-function: ease-in-out;
     }
     100% {
-        -webkit-transform: rotateZ(720deg) ;
-        opacity: 1;
-        -webkit-animation-timing-function: ease-in;
+        -webkit-transform: rotateZ(720deg) scale(1) ;
+        opacity: .8;
+        -webkit-animation-timing-function: ease-in-out;
     }
 }
 

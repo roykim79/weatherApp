@@ -83,6 +83,7 @@
 		},
 
 		runWeatherApp: function(location, loading, output){
+			output.hide();
 			loading.show();
 			this.setQueryData(location);
 			$.when(
@@ -92,7 +93,7 @@
 				weatherApp.displayCurrent( curData );
 				weatherApp.displayExtended( extData );
 				loading.hide();
-				output.show();
+				output.fadeIn();
 			});
 		},
 
@@ -129,11 +130,11 @@
 	}
 	// location based search on page load
 
-	if ( navigator.geolocation ) {
-		navigator.geolocation.getCurrentPosition(function(position){
-			weatherApp.runWeatherApp( position, $loading, $output );
-		});
-	} else {}
+	// if ( navigator.geolocation ) {
+	// 	navigator.geolocation.getCurrentPosition(function(position){
+	// 		weatherApp.runWeatherApp( position, $loading, $output );
+	// 	});
+	// } else {}
 
 	$form.on('submit', function(){
 		var location = $.trim( $input.val() );
