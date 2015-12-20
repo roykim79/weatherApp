@@ -97,7 +97,8 @@
 		},
 
 		setQueryData: function(location){
-			var units = { units: 'imperial' },
+			var units = { units: 'imperial',
+						  appid:  '2698364f7fdf260cfb261fae0e4dfd0e'},
 				city = { q: location },
 				zip = { zip: location };
 
