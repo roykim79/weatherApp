@@ -99,6 +99,8 @@
 		setQueryData: function(location){
 			var units = { units: 'imperial',
 						  appid:  '2698364f7fdf260cfb261fae0e4dfd0e'},
+				// if you came here to steal my key, you can always get one yourself for free
+				// @ www.openweathermap.org
 				city = { q: location },
 				zip = { zip: location };
 
