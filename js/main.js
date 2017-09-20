@@ -43,21 +43,21 @@
 		},
 
 		getCurrent: function(){
-			var URL = "http://api.openweathermap.org/data/2.5/weather",
+			var URL = "https://api.openweathermap.org/data/2.5/weather",
 				data = this.queryData;
 
 			return $.getJSON(URL, data);
 		},
 
 		getExtended: function(){
-			var URL = "http://api.openweathermap.org/data/2.5/forecast/daily",
+			var URL = "https://api.openweathermap.org/data/2.5/forecast/daily",
 				data = $.extend( this.queryData, { cnt: 10 } );
 
 			return $.getJSON(URL, data);
 		},
 
 		getIconURL: function(code){
-			return "http://openweathermap.org/img/w/" + code +".png"
+			return "https://openweathermap.org/img/w/" + code +".png"
 		},
 
 		processData: function(data){

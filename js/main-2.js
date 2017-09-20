@@ -4,7 +4,7 @@
 
 	var weatherApp = {
 		isValCity: false,
-		curURL: "http://api.openweathermap.org/data/2.5/weather",
+		curURL: "https://api.openweathermap.org/data/2.5/weather",
 		dataBase: { units: 'imperial', count: 10 },
 		qData: {},
 
